@@ -41,7 +41,6 @@ creationForm.addEventListener('submit', async (event) => {
             })
 
         const data = await res.json()
-        console.log(data)
 
         if (!res.ok) {
             const errorMessage = data['title']
