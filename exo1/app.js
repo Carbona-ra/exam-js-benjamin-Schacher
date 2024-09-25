@@ -13,7 +13,7 @@ creationForm.addEventListener('submit', async (event) => {
     const confirmPassword = formData.get("confirmPassword")
 
     if (password.length < 8) {
-        messages.textContent = "Formulaire invalide"
+        messages.textContent = "Mot de passe trop court"
         messages.style.color = "red"
         spiner.style.display = 'none'
         return
@@ -33,11 +33,7 @@ creationForm.addEventListener('submit', async (event) => {
                 },
                 body: JSON.stringify({
                     "email": email,
-                    "roles": [
-                      "flopeur"
-                    ],
                     "password": password,
-                    "articles": []
                   })
             })
 
