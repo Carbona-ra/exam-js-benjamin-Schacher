@@ -6,13 +6,14 @@ spiner.style.display = 'none'
 function makeMessages(Text, color) {
     messages.textContent = Text
     messages.style.color = color
+    spiner.style.display = 'none'
 }
 
 creationForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     spiner.style.display = 'block'
-    
+
     const formData = new FormData(creationForm)
     const email = formData.get("Email")
     const password = formData.get("Password")
@@ -20,11 +21,9 @@ creationForm.addEventListener('submit', async (event) => {
 
     if (password.length < 8) {
         makeMessages("Mot de passe trop court", "red")
-        spiner.style.display = 'none'
         return
     } else if (password !== confirmPassword) {
         makeMessages("Confirmation de mot de passe invalide", "red")
-        spiner.style.display = 'none'
         return
     }
     
@@ -41,24 +40,21 @@ creationForm.addEventListener('submit', async (event) => {
                   })
             })
 
-            const data = await res.json()
-            console.log(data)
+        const data = await res.json()
+        console.log(data)
 
-            if (!res.ok) {
-                const errorMessage = data['title']
-                messagesErreur = "Erreur : " + errorMessage
-                makeMessages(messagesErreur, "red")
-                spiner.style.display = 'none'
-                return
-            }
-
-            makeMessages("Création réussite", "green")
-            spiner.style.display = 'none'
-            
-        }   catch (err) {
-            messagesCathErreur = "Une erreur s'est produite : " + err
-            makeMessages(messagesCathErreur, "red")
-            spiner.style.display = 'none'
+        if (!res.ok) {
+            const errorMessage = data['title']
+            messagesErreur = "Erreur : " + errorMessage
+            makeMessages(messagesErreur, "red")
+            return
         }
-    });
+
+        makeMessages("Création réussite", "green")
+            
+    } catch (err) {
+        messagesCathErreur = "Une erreur s'est produite : " + err
+        makeMessages(messagesCathErreur, "red")
+    }
+});
 
