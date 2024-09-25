@@ -1,7 +1,3 @@
-.hidden {
-    display: none;
-}
-
 #creationForm input {
     width: 100%;
     padding: 10px;
@@ -36,9 +32,9 @@
     border-radius: 4px;
     font-size: 16px;
     width: 100%;
-    transition: background-color 0.5s ease;
+    transition: background-color 0.2s ease;
 }
 
 #formButton:hover {
-    background-color: #004085;
+    background-color: #004285;
 }
